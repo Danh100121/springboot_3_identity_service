@@ -22,6 +22,5 @@ public class User {
     String firstName;
     String lastName;
     LocalDate dob;
-    @Transient
     Set<String> roles;
 }

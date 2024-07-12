@@ -3,8 +3,9 @@ package com.danhpahm.identity_service.service;
 import com.danhpahm.identity_service.dto.request.UserCreationRequest;
 import com.danhpahm.identity_service.dto.request.UserUpdateRequest;
 import com.danhpahm.identity_service.dto.response.UserResponse;
+import com.danhpahm.identity_service.entity.Role;
 import com.danhpahm.identity_service.entity.User;
-import com.danhpahm.identity_service.enums.Role;
+import com.danhpahm.identity_service.constant.PredefinedRole;
 import com.danhpahm.identity_service.exception.AppException;
 import com.danhpahm.identity_service.exception.ErrorCode;
 import com.danhpahm.identity_service.mapper.UserMapper;
@@ -18,13 +19,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -46,10 +45,10 @@ public class UserService {
         User user = userMapper.toUser(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        HashSet<String> roles = new HashSet<>();
-        roles.add(Role.USER.name());
+        HashSet<Role> roles = new HashSet<>();
+        roleRepository.findById(PredefinedRole.USER_ROLE).ifPresent(roles::add);
 
-//        user.setRoles(roles);
+        user.setRoles(roles);
         return userMapper.toUserResponse(userRepository.save(user));
     }
 

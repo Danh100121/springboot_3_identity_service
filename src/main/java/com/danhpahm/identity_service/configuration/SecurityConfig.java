@@ -19,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private final String[] PUBLIC_URLS = {"/users",
+    private static final String[] PUBLIC_URLS = {"/users",
             "/auth/token", "/auth/introspect", "/auth/logout", "/auth/refresh"};
 
     @Autowired

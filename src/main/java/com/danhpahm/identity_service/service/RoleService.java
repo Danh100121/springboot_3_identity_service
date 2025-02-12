@@ -1,7 +1,6 @@
 package com.danhpahm.identity_service.service;
 
 import com.danhpahm.identity_service.dto.request.RoleRequest;
-import com.danhpahm.identity_service.dto.response.PermissionResponse;
 import com.danhpahm.identity_service.dto.response.RoleResponse;
 import com.danhpahm.identity_service.mapper.RoleMapper;
 import com.danhpahm.identity_service.repository.PermissionRepository;

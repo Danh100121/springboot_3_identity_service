@@ -3,6 +3,7 @@ package com.danhpahm.identity_service.controller;
 import com.danhpahm.identity_service.dto.request.UserCreationRequest;
 import com.danhpahm.identity_service.dto.response.UserResponse;
 import com.danhpahm.identity_service.service.UserService;
+import com.danhpahm.identity_service.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +28,7 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
+    private UserServiceImpl userService;
 
     private UserCreationRequest request;
     private UserResponse userResponse;
